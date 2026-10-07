@@ -1,6 +1,106 @@
-// Fidelia Atelier Website JavaScript
+// Fidelia Atelier Website JavaScript - Luxury Enhanced
+
+function isUsableImageSource(source) {
+  if (typeof source !== 'string') return false;
+
+  const trimmedSource = source.trim();
+  if (!trimmedSource || /^(REPLACE_WITH_|SOURCE_HERE_)/i.test(trimmedSource)) return false;
+
+  try {
+    const protocol = new URL(trimmedSource, document.baseURI).protocol;
+    return ['http:', 'https:', 'file:'].includes(protocol);
+  } catch {
+    return false;
+  }
+}
+
+function applyImageSource(image, source, placeholder) {
+  image.classList.add('is-pending');
+  image.setAttribute('aria-hidden', 'true');
+  if (!isUsableImageSource(source)) return;
+
+  image.addEventListener('load', function() {
+    image.classList.remove('is-pending');
+    image.removeAttribute('aria-hidden');
+    if (placeholder) placeholder.classList.add('has-image');
+  }, { once: true });
+
+  image.addEventListener('error', function() {
+    image.removeAttribute('src');
+    image.classList.add('is-pending');
+    image.setAttribute('aria-hidden', 'true');
+    if (placeholder) placeholder.classList.remove('has-image');
+  }, { once: true });
+
+  image.src = source.trim();
+}
+
+function createImageSlot(source, category, index) {
+  const slot = document.createElement('figure');
+  slot.className = 'image-source-slot';
+
+  const image = document.createElement('img');
+  image.className = 'configured-image';
+  image.alt = `${category} image ${index + 1}`;
+  image.loading = 'lazy';
+  image.decoding = 'async';
+  slot.appendChild(image);
+  applyImageSource(image, source, slot);
+
+  return slot;
+}
+
+function initializeCentralImages() {
+  const expectedCounts = { courseCatalog: 11, promo: 7, services: 18 };
+
+  Object.keys(expectedCounts).forEach(category => {
+    const sources = IMAGE_SOURCES[category];
+    const expectedCount = expectedCounts[category];
+
+    if (!Array.isArray(sources) || sources.length !== expectedCount) {
+      console.error(`Image configuration error: ${category} must contain exactly ${expectedCount} sources.`);
+      return;
+    }
+
+    const usedIndexes = new Set();
+    document.querySelectorAll(`[data-image-category="${category}"]`).forEach(placeholder => {
+      const index = Number(placeholder.getAttribute('data-image-index'));
+      if (!Number.isInteger(index) || index < 0 || index >= sources.length) {
+        console.error(`Image configuration error: invalid ${category} image index.`, placeholder);
+        return;
+      }
+
+      const image = document.createElement('img');
+      image.className = 'configured-image';
+      image.alt = `${category} image ${index + 1}`;
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      placeholder.appendChild(image);
+      applyImageSource(image, sources[index], placeholder);
+      usedIndexes.add(index);
+    });
+
+    document.querySelectorAll(`[data-image-gallery="${category}"]`).forEach(gallery => {
+      sources.forEach((source, index) => {
+        if (!usedIndexes.has(index)) {
+          gallery.appendChild(createImageSlot(source, category, index));
+        }
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-central-image="branding.logo"]').forEach(logo => {
+    applyImageSource(logo, IMAGE_SOURCES.branding.logo);
+  });
+
+  const favicon = document.getElementById('siteFavicon');
+  if (favicon && isUsableImageSource(IMAGE_SOURCES.branding.favicon)) {
+    favicon.href = IMAGE_SOURCES.branding.favicon.trim();
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
+  initializeCentralImages();
   
   // Mobile Menu Toggle Functionality
   const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -11,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
     mobileMenuToggle.addEventListener('click', function() {
       mobileMenuToggle.classList.toggle('active');
       mobileMenu.classList.toggle('active');
+      mobileMenuToggle.setAttribute('aria-expanded', mobileMenu.classList.contains('active'));
       
       // Prevent body scroll when menu is open
       if (mobileMenu.classList.contains('active')) {
@@ -26,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
       link.addEventListener('click', function() {
         mobileMenuToggle.classList.remove('active');
         mobileMenu.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
         body.style.overflow = '';
       });
     });
@@ -35,40 +137,74 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
         mobileMenuToggle.classList.remove('active');
         mobileMenu.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
         body.style.overflow = '';
       }
     });
   }
   
-  // Gallery Filter Functionality
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  // Beauty Concern Selector (Interactive Find Your Solution)
+  const concernButtons = document.querySelectorAll('.concern-btn');
+  const solutionCards = document.querySelectorAll('.solution-card');
   
-  if (filterButtons.length > 0 && galleryItems.length > 0) {
-    filterButtons.forEach(button => {
+  if (concernButtons.length > 0 && solutionCards.length > 0) {
+    concernButtons.forEach(button => {
       button.addEventListener('click', function() {
-        const filter = this.getAttribute('data-filter');
+        const concern = this.getAttribute('data-concern');
         
         // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
+        concernButtons.forEach(btn => btn.classList.remove('active'));
         this.classList.add('active');
         
-        // Filter gallery items
-        galleryItems.forEach(item => {
-          const category = item.getAttribute('data-category');
+        // Show corresponding solution card
+        solutionCards.forEach(card => {
+          const solution = card.getAttribute('data-solution');
+          card.classList.remove('active');
           
-          if (filter === 'all' || category === filter) {
-            item.style.display = 'block';
-            item.style.animation = 'fadeIn 0.5s ease-in-out';
-          } else {
-            item.style.display = 'none';
+          if (solution === concern) {
+            setTimeout(() => {
+              card.classList.add('active');
+            }, 150);
           }
         });
       });
     });
   }
   
-  // Smooth Scrolling for Navigation Links
+  // FAQ Accordion Functionality
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    if (question) {
+      question.addEventListener('click', function() {
+        const isOpen = item.hasAttribute('open');
+        
+        // Close all other FAQ items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.removeAttribute('open');
+            const otherQuestion = otherItem.querySelector('.faq-question');
+            if (otherQuestion) {
+              otherQuestion.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+        
+        // Toggle current item
+        if (isOpen) {
+          item.removeAttribute('open');
+          question.setAttribute('aria-expanded', 'false');
+        } else {
+          item.setAttribute('open', '');
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  });
+  
+  // Enhanced Smooth Scrolling with improved positioning
   const navLinks = document.querySelectorAll('a[href^="#"]');
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
@@ -83,8 +219,13 @@ document.addEventListener('DOMContentLoaded', function() {
       const targetElement = document.getElementById(targetId);
       
       if (targetElement) {
-        const navbarHeight = document.querySelector('.navbar').offsetHeight;
-        const targetPosition = targetElement.offsetTop - navbarHeight - 20;
+        const navbar = document.querySelector('.navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+        const announcementBar = document.querySelector('.announcement-bar');
+        const announcementHeight = announcementBar ? announcementBar.offsetHeight : 0;
+        
+        const targetRect = targetElement.getBoundingClientRect();
+        const targetPosition = targetRect.top + window.pageYOffset - navbarHeight - announcementHeight - 20;
         
         window.scrollTo({
           top: targetPosition,
@@ -94,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Navbar Scroll Effect
+  // Enhanced Navbar Scroll Effect
   let lastScrollTop = 0;
   const navbar = document.querySelector('.navbar');
   
@@ -108,19 +249,21 @@ document.addEventListener('DOMContentLoaded', function() {
       navbar.classList.remove('scrolled');
     }
     
-    // Hide/show navbar on scroll (optional enhancement)
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-      // Scrolling down
+    // Enhanced hide/show navbar logic
+    if (scrollTop > lastScrollTop && scrollTop > 150) {
+      // Scrolling down - hide navbar
       navbar.style.transform = 'translateY(-100%)';
+      navbar.style.transition = 'transform 0.3s ease-in-out';
     } else {
-      // Scrolling up
+      // Scrolling up - show navbar
       navbar.style.transform = 'translateY(0)';
+      navbar.style.transition = 'transform 0.3s ease-in-out';
     }
     
     lastScrollTop = scrollTop;
   });
   
-  // Intersection Observer for Animations (optional enhancement)
+  // Enhanced Intersection Observer for Scroll Animations
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -134,35 +277,78 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, observerOptions);
   
-  // Observe elements with animation classes
-  const animatedElements = document.querySelectorAll('.card, .hero-content, .section');
+  // Observe elements for animation
+  const animatedElements = document.querySelectorAll('.card, .hero-content, .section, .philosophy-pillar, .solution-card');
   animatedElements.forEach(element => {
     observer.observe(element);
   });
   
+  // Floating WhatsApp Button Enhancement
+  const floatingWhatsapp = document.getElementById('floatingWhatsapp');
+  
+  if (floatingWhatsapp) {
+    // Show/hide based on scroll position
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 300) {
+        floatingWhatsapp.style.opacity = '1';
+        floatingWhatsapp.style.transform = 'scale(1)';
+      } else {
+        floatingWhatsapp.style.opacity = '0.7';
+        floatingWhatsapp.style.transform = 'scale(0.9)';
+      }
+    });
+    
+    // Add click tracking (optional analytics)
+    floatingWhatsapp.addEventListener('click', function() {
+      // Add analytics tracking here if needed
+      console.log('WhatsApp floating button clicked');
+    });
+  }
+  
+  // Grid Layout Enhancement for Services
+  const serviceGrids = document.querySelectorAll('.grid-3');
+  serviceGrids.forEach(grid => {
+    grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(280px, 1fr))';
+    grid.style.justifyContent = 'center';
+  });
+  
 });
 
-// CSS Animation for gallery filter fade in
+// CSS Animations
 const style = document.createElement('style');
 style.textContent = `
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  .floating-whatsapp {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .solution-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .faq-answer {
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
 document.head.appendChild(style);
 
-// Utility Functions
+// Enhanced Utility Functions
 function updateActiveNavLink() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .mobile-nav-links a[href^="#"]');
   
   let current = '';
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.clientHeight;
     
-    if (pageYOffset >= sectionTop - 200) {
+    if (scrollTop >= sectionTop - 200 && scrollTop < sectionTop + sectionHeight - 200) {
       current = section.getAttribute('id');
     }
   });
@@ -178,7 +364,40 @@ function updateActiveNavLink() {
 // Update active nav link on scroll
 window.addEventListener('scroll', updateActiveNavLink);
 
-// Loading Animation (optional)
+// Enhanced Loading Animation
 window.addEventListener('load', function() {
   document.body.classList.add('loaded');
+  
+  // Trigger hero animation
+  const heroContent = document.querySelector('.hero-content');
+  if (heroContent) {
+    setTimeout(() => {
+      heroContent.classList.add('animate-in');
+    }, 100);
+  }
+  
+  // Initialize first solution card
+  const firstConcernBtn = document.querySelector('.concern-btn');
+  if (firstConcernBtn) {
+    setTimeout(() => {
+      firstConcernBtn.click();
+    }, 500);
+  }
 });
+
+// Performance optimization - Debounced scroll handler
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Apply debouncing to scroll-heavy functions
+const debouncedUpdateActiveNavLink = debounce(updateActiveNavLink, 50);
+window.addEventListener('scroll', debouncedUpdateActiveNavLink);

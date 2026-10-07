@@ -7,7 +7,16 @@
   <meta name="description" content="Fidelia Atelier offers premium beauty treatments and professional beauty education in Jakarta Barat. Specializing in nail art, lash services, brow treatments, PMU, and beauty courses." />
   
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="assets/images/branding/favicon.ico" />
+  <link id="siteFavicon" rel="icon" type="image/x-icon" />
+  
+  <!-- DNS Prefetch & Preconnect for Google Fonts -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Fidelia Atelier - Beauty Lounge & Academy" />
@@ -15,29 +24,97 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fideliaatelier.com" />
   
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["BeautySalon", "EducationalOrganization"],
+    "name": "Fidelia Atelier",
+    "alternateName": "Fidelia Atelier Beauty Lounge & Academy",
+    "description": "Premium beauty treatments and professional beauty education specializing in nail art, lash services, brow treatments, PMU, and beauty courses",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ruko Cordoba Blok C No. 22, Green Lake City at Puri",
+      "addressLocality": "Jakarta Barat",
+      "addressCountry": "ID"
+    },
+    "telephone": "+62819-9627-4816",
+    "openingHours": "Mo-Su 10:00-18:00",
+    "priceRange": "$$$$",
+    "serviceArea": {
+      "@type": "City",
+      "name": "Jakarta"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Beauty Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Nail Art & Treatment",
+            "description": "Professional nail art and treatments using premium gel products"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service", 
+            "name": "Lash Enhancement",
+            "description": "Lash lift, tint, and extension services"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Brow & PMU Services",
+            "description": "Expert brow shaping and permanent makeup services"
+          }
+        }
+      ]
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Felicia Fidelia"
+    }
+  }
+  </script>
+  
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/new-sections.css" />
 </head>
 <body>
 
+  <!-- Announcement Top Bar -->
+  <div class="announcement-bar">
+    <div class="container">
+      <span class="announcement-text">Private appointments · Green Lake City</span>
+      <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20premium" class="announcement-link" target="_blank" rel="noopener noreferrer">Chat Now</a>
+    </div>
+  </div>
+
   <!-- Navigation -->
   <nav class="navbar">
     <div class="container">
-      <a href="#home" class="logo">Fidelia Atelier</a>
+      <a href="#home" class="brand-mark" aria-label="Fidelia Atelier home">
+        <img alt="Fidelia Atelier" data-central-image="branding.logo" />
+        <span>Fidelia Atelier</span>
+      </a>
       
       <!-- Desktop Navigation -->
       <ul class="nav-links">
         <li><a href="#beauty-lounge">Beauty Lounge</a></li>
         <li><a href="#academy">Academy</a></li>
-        <li><a href="#results">Results</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi" class="btn btn-whatsapp" target="_blank">Book Now</a></li>
+        <li><a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi" class="btn btn-nav" target="_blank" rel="noopener noreferrer">Book an appointment <span aria-hidden="true">→</span></a></li>
       </ul>
       
       <!-- Mobile Menu Toggle -->
-      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -48,10 +125,9 @@
         <ul class="mobile-nav-links">
           <li><a href="#beauty-lounge">Beauty Lounge</a></li>
           <li><a href="#academy">Academy</a></li>
-          <li><a href="#results">Results</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi" class="btn btn-whatsapp" target="_blank">Book Now</a></li>
+          <li><a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi" class="btn btn-nav" target="_blank" rel="noopener noreferrer">Book an appointment <span aria-hidden="true">→</span></a></li>
         </ul>
       </div>
     </div>
@@ -61,38 +137,95 @@
   <section id="home" class="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="hero-badge">
-          <span class="text-gold">Premium Beauty Experience</span>
-        </div>
-        <h1 class="heading-1">Beauty Lounge <span class="text-gold">&</span> Academy</h1>
+        <p class="editorial-kicker"><span>Fidelia Atelier</span><span>Jakarta Barat</span></p>
+        <h1 class="heading-1">Beauty,<br>precision, and<br><em>transformation.</em></h1>
         <p class="hero-description body-large">
-          Discover the art of beauty transformation at Fidelia Atelier. 
-          Experience premium treatments and master professional beauty skills 
-          in the heart of Jakarta Barat.
+          A considered approach to beauty, with a private lounge for personal treatments and an academy for professional learning.
         </p>
         <div class="hero-cta">
-          <a href="#beauty-lounge" class="btn btn-primary">Explore Services</a>
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi" class="btn btn-whatsapp" target="_blank">Book Consultation</a>
+          <a href="#beauty-lounge" class="btn btn-primary">Explore the lounge <span aria-hidden="true">→</span></a>
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi" class="text-link" target="_blank" rel="noopener noreferrer">Book a consultation <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-number text-gold">Premium</div>
-            <div class="stat-label body-small">Quality Treatments</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number text-gold">Professional</div>
-            <div class="stat-label body-small">Beauty Education</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number text-gold">Expert</div>
-            <div class="stat-label body-small">Transformation</div>
-          </div>
+        <div class="hero-note">
+          <span>01</span>
+          <span>Beauty Lounge <i>&</i> Academy<br>Green Lake City</span>
         </div>
       </div>
       <div class="hero-visual">
         <div class="hero-image-container">
-          <div class="hero-image hero-gradient-bg"></div>
-          <div class="hero-image-overlay"></div>
+          <img class="hero-image" alt="Fidelia Atelier brand mark" data-central-image="branding.logo" fetchpriority="high" />
+        </div>
+        <span class="hero-image-caption">Fidelia Atelier <span>—</span> Beauty Lounge & Academy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo Gallery -->
+  <section id="promo" class="section section-alt">
+    <div class="container">
+      <div class="text-center">
+        <p class="editorial-kicker">Selected promotions</p>
+        <h2 class="heading-2">Promotions<br><em>from the atelier.</em></h2>
+        <p class="body-large" style="margin: var(--space-6) auto var(--space-12); max-width: 600px; color: var(--color-neutral-500);">
+          Promotional materials from Fidelia Atelier.
+        </p>
+      </div>
+      <div class="image-source-grid" data-image-gallery="promo"></div>
+    </div>
+  </section>
+
+  <!-- The Fidelia Philosophy & Standard -->
+  <section class="philosophy-section">
+    <div class="container">
+      <div class="philosophy-content">
+        <div class="text-center">
+          <p class="editorial-kicker">01 <span>/</span> The Fidelia standard</p>
+          <h2 class="heading-3">The Fidelia Philosophy & Standard</h2>
+          <p class="body-large" style="margin: var(--space-4) auto var(--space-8); max-width: 600px; color: var(--color-neutral-500);">
+            Four pillars of premium beauty excellence that define our commitment to your transformation
+          </p>
+        </div>
+        
+        <div class="philosophy-grid">
+          <div class="philosophy-pillar">
+            <div class="pillar-icon medical-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <h4 class="heading-4">Medical-Grade Hygiene</h4>
+            <p class="body-small">Sterilized single-use tools and hospital-grade sanitation standards for your safety</p>
+          </div>
+          
+          <div class="philosophy-pillar">
+            <div class="pillar-icon premium-materials-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+              </svg>
+            </div>
+            <h4 class="heading-4">Certified Premium Pigments</h4>
+            <p class="body-small">International-grade materials and pigments with certified quality assurance</p>
+          </div>
+          
+          <div class="philosophy-pillar">
+            <div class="pillar-icon correction-specialist-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11H3v4h6m1.447-4.894L12 12m0 0l1.553-1.894M12 12v6.5m8.5-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"></path>
+              </svg>
+            </div>
+            <h4 class="heading-4">Signature Correction Specialist</h4>
+            <p class="body-small">Expert correction and restoration of previous treatments with advanced techniques</p>
+          </div>
+          
+          <div class="philosophy-pillar">
+            <div class="pillar-icon ecosystem-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+              </svg>
+            </div>
+            <h4 class="heading-4">Double Ecosystem</h4>
+            <p class="body-small">Integrated beauty treatments with professional academy for comprehensive beauty solutions</p>
+          </div>
         </div>
       </div>
     </div>
@@ -102,10 +235,8 @@
   <section id="beauty-lounge" class="section">
     <div class="container">
       <div class="text-center">
-        <div class="hero-badge">
-          <span class="text-gold">Premium Beauty Treatments</span>
-        </div>
-        <h2 class="heading-2">Beauty Lounge</h2>
+        <p class="editorial-kicker">02 <span>/</span> Beauty Lounge</p>
+        <h2 class="heading-2">Care, considered.</h2>
         <p class="body-large" style="margin: var(--space-6) auto var(--space-12); max-width: 600px; color: var(--color-neutral-500);">
           Experience transformation through our comprehensive beauty treatments. Each service is crafted with premium products and expert techniques for exceptional results.
         </p>
@@ -113,40 +244,40 @@
       
       <div class="grid grid-3">
         <div class="card">
-          <div class="service-image nail-service"></div>
           <h3 class="heading-4">Nail</h3>
           <p class="body-small" style="margin: var(--space-3) 0 var(--space-6);">Professional nail art and treatments using premium gel products for long-lasting, stunning results.</p>
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20nail%20treatment" class="btn btn-secondary" target="_blank">Book Nail Service</a>
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20nail%20treatment" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Book Nail Service</a>
         </div>
         
         <div class="card">
-          <div class="service-image lash-service"></div>
           <h3 class="heading-4">Lash</h3>
           <p class="body-small" style="margin: var(--space-3) 0 var(--space-6);">Enhance your natural lashes with lift, tint, and extension services for dramatic, beautiful eyes.</p>
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20lash%20treatment" class="btn btn-secondary" target="_blank">Book Lash Service</a>
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20lash%20treatment" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Book Lash Service</a>
         </div>
         
         <div class="card">
-          <div class="service-image brow-service"></div>
           <h3 class="heading-4">Brow / PMU</h3>
           <p class="body-small" style="margin: var(--space-3) 0 var(--space-6);">Expert brow shaping and permanent makeup services for perfectly defined, long-lasting brows.</p>
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20brow%20dan%20PMU" class="btn btn-secondary" target="_blank">Book Brow Service</a>
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20brow%20dan%20PMU" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Book Brow Service</a>
         </div>
         
         <div class="card">
-          <div class="service-image skin-service"></div>
           <h3 class="heading-4">Skin</h3>
           <p class="body-small" style="margin: var(--space-3) 0 var(--space-6);">Rejuvenating facial treatments and skincare solutions for healthy, glowing complexion.</p>
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20skin%20treatment" class="btn btn-secondary" target="_blank">Book Skin Treatment</a>
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20skin%20treatment" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Book Skin Treatment</a>
         </div>
         
         <div class="card">
-          <div class="service-image correction-service"></div>
           <h3 class="heading-4">Problem Correction</h3>
           <p class="body-small" style="margin: var(--space-3) 0 var(--space-6);">Specialized correction services for previous treatments, including laser removal and color corrections.</p>
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20problem%20correction" class="btn btn-secondary" target="_blank">Book Correction Service</a>
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20problem%20correction" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Book Correction Service</a>
         </div>
       </div>
+
+      <div class="text-center image-source-heading">
+        <h3 class="heading-3">Service Gallery</h3>
+      </div>
+      <div class="image-source-grid" data-image-gallery="services"></div>
     </div>
   </section>
 
@@ -154,47 +285,69 @@
   <section id="academy" class="section section-alt">
     <div class="container">
       <div class="text-center">
-        <div class="hero-badge">
-          <span class="text-gold">Professional Education</span>
-        </div>
-        <h2 class="heading-2">Beauty Academy</h2>
+        <p class="editorial-kicker">03 <span>/</span> Fidelia Academy</p>
+        <h2 class="heading-2">Learn the craft.<br><em>Build the confidence.</em></h2>
         <p class="body-large" style="margin: var(--space-6) auto var(--space-12); max-width: 600px; color: var(--color-neutral-500);">
           Master the art of beauty with comprehensive training programs led by industry experts. Transform your passion into professional skills.
         </p>
       </div>
+
+      <div class="text-center image-source-heading">
+        <h3 class="heading-3">Course Catalog</h3>
+      </div>
+      <div class="image-source-grid" data-image-gallery="courseCatalog"></div>
       
       <div class="grid grid-2">
         <div class="card">
-          <div class="academy-image courses-image"></div>
           <h3 class="heading-3">Courses</h3>
           <p class="body-small" style="margin: var(--space-4) 0 var(--space-6);">
-            Comprehensive beauty training programs covering nail art, lash techniques, brow styling, PMU, and advanced beauty treatments. Learn from certified professionals with hands-on practice.
+            Comprehensive beauty training programs covering nail art, lash techniques, brow styling, PMU, and advanced beauty treatments.
           </p>
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20informasi%20tentang%20beauty%20courses" class="btn btn-primary" target="_blank">Explore Courses</a>
+          
+          <!-- Academy Highlights -->
+          <div class="academy-highlights">
+            <div class="highlight-item-small">
+              <span class="highlight-icon">01</span>
+              <span>100% Hands-on Practice dengan Model Hidup</span>
+            </div>
+            <div class="highlight-item-small">
+              <span class="highlight-icon">02</span>
+              <span>International Technique Certification</span>
+            </div>
+            <div class="highlight-item-small">
+              <span class="highlight-icon">03</span>
+              <span>Business Setup & Client Consultation Mentorship</span>
+            </div>
+            <div class="highlight-item-small">
+              <span class="highlight-icon">04</span>
+              <span>Lifetime Mentoring Support by Founder</span>
+            </div>
+          </div>
+          
+          <div class="academy-cta" style="margin-top: var(--space-6);">
+            <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20download%20course%20syllabus" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Download Course Syllabus</a>
+            <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20informasi%20tentang%20beauty%20courses" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Konsultasi Kursus</a>
+          </div>
         </div>
         
         <div class="card">
-          <div class="academy-image mentoring-image"></div>
           <h3 class="heading-3">Mentoring</h3>
           <p class="body-small" style="margin: var(--space-4) 0 var(--space-6);">
             Personalized one-on-one mentoring sessions to accelerate your learning journey. Get expert guidance tailored to your goals and skill level.
           </p>
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20informasi%20tentang%20mentoring%20program" class="btn btn-primary" target="_blank">Learn About Mentoring</a>
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20informasi%20tentang%20mentoring%20program" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Learn About Mentoring</a>
         </div>
       </div>
       
       <div class="mentor-spotlight" style="margin-top: var(--space-16);">
         <div class="card" style="max-width: 800px; margin: 0 auto;">
-          <div class="flex gap-8" style="align-items: center;">
-            <div class="mentor-image"></div>
-            <div>
-              <h3 class="heading-3">Meet Felicia Fidelia</h3>
-              <p class="text-gold body-large" style="margin: var(--space-2) 0 var(--space-4);">Founder & Lead Instructor</p>
-              <p class="body-small" style="margin-bottom: var(--space-6);">
-                With years of expertise in beauty transformation and education, Felicia Fidelia leads Fidelia Atelier with passion for excellence. Her commitment to quality and innovation has made Fidelia Atelier a trusted name in beauty services and education.
-              </p>
-              <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20dengan%20Felicia%20Fidelia" class="btn btn-whatsapp" target="_blank">Consult with Felicia</a>
-            </div>
+          <p class="editorial-kicker">The mentor</p>
+          <h3 class="heading-3">Meet Felicia Fidelia</h3>
+          <p class="text-gold body-large" style="margin: var(--space-2) 0 var(--space-4);">Founder & Lead Instructor</p>
+          <p class="body-small" style="max-width: 42rem; margin-bottom: var(--space-6);">
+            With years of expertise in beauty transformation and education, Felicia Fidelia leads Fidelia Atelier with passion for excellence. Her commitment to quality and innovation has made Fidelia Atelier a trusted name in beauty services and education.
+          </p>
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20dengan%20Felicia%20Fidelia" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Consult with Felicia <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>
@@ -205,7 +358,8 @@
   <section id="why-fidelia" class="section">
     <div class="container">
       <div class="text-center">
-        <h2 class="heading-2">Why Choose Fidelia Atelier</h2>
+        <p class="editorial-kicker">A considered approach</p>
+        <h2 class="heading-2">Beauty built on a specialist approach.</h2>
         <p class="body-large" style="margin: var(--space-6) auto var(--space-12); max-width: 600px; color: var(--color-neutral-500);">
           Experience the difference with our commitment to excellence, premium quality, and personalized service that transforms your beauty journey.
         </p>
@@ -251,73 +405,76 @@
     </div>
   </section>
 
-  <!-- Results Gallery Section -->
-  <section id="results" class="section section-alt">
+  <!-- Interactive Find Your Solution -->
+  <section class="solution-finder section-alt">
     <div class="container">
       <div class="text-center">
-        <h2 class="heading-2">Results Gallery</h2>
+        <h2 class="heading-2">What brings you to Fidelia?</h2>
         <p class="body-large" style="margin: var(--space-6) auto var(--space-8); max-width: 600px; color: var(--color-neutral-500);">
-          Witness the transformations and exceptional results achieved through our expert treatments and techniques.
+          Tell us your beauty concern and discover the ideal treatment or course for your needs
         </p>
       </div>
       
-      <div class="gallery-filters">
-        <button class="filter-btn active" data-filter="all">All Results</button>
-        <button class="filter-btn" data-filter="pmu">PMU</button>
-        <button class="filter-btn" data-filter="brows">Brows</button>
-        <button class="filter-btn" data-filter="lips">Lips</button>
-        <button class="filter-btn" data-filter="nails">Nails</button>
-        <button class="filter-btn" data-filter="lash">Lash</button>
-      </div>
-      
-      <div class="gallery-grid">
-        <div class="gallery-item" data-category="pmu">
-          <div class="gallery-placeholder pmu-result"></div>
-          <div class="gallery-overlay">
-            <span>PMU Results</span>
-          </div>
+      <div class="concern-selector">
+        <div class="concern-options">
+          <button class="concern-btn" data-concern="brow">
+            <div class="concern-icon">👁️</div>
+            <span>Alis tipis / tidak simetris</span>
+          </button>
+          <button class="concern-btn" data-concern="lash">
+            <div class="concern-icon">👁️</div>
+            <span>Bulu mata rontok / turun</span>
+          </button>
+          <button class="concern-btn" data-concern="correction">
+            <div class="concern-icon">🎨</div>
+            <span>Bekas sulam kemerahan/kebiruan</span>
+          </button>
+          <button class="concern-btn" data-concern="business">
+            <div class="concern-icon">💼</div>
+            <span>Ingin buka studio kecantikan sendiri</span>
+          </button>
         </div>
         
-        <div class="gallery-item" data-category="brows">
-          <div class="gallery-placeholder brows-result"></div>
-          <div class="gallery-overlay">
-            <span>Brow Transformation</span>
+        <div class="solution-cards" id="solutionCards">
+          <div class="solution-card" data-solution="brow">
+            <h3 class="heading-4">Brow & PMU Services</h3>
+            <p class="body-small">Expert brow shaping and permanent makeup for perfectly defined, symmetrical brows</p>
+            <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20memiliki%20masalah%20dengan%20alis%20dan%20ingin%20konsultasi" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Konsultasi Alis & PMU</a>
           </div>
-        </div>
-        
-        <div class="gallery-item" data-category="lips">
-          <div class="gallery-placeholder lips-result"></div>
-          <div class="gallery-overlay">
-            <span>Lip Enhancement</span>
+          
+          <div class="solution-card" data-solution="lash">
+            <h3 class="heading-4">Lash Enhancement</h3>
+            <p class="body-small">Professional lash treatments to restore volume, length, and natural curl</p>
+            <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20memiliki%20masalah%20dengan%20bulu%20mata%20dan%20ingin%20konsultasi" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Konsultasi Lash Treatment</a>
           </div>
-        </div>
-        
-        <div class="gallery-item" data-category="nails">
-          <div class="gallery-placeholder nails-result"></div>
-          <div class="gallery-overlay">
-            <span>Nail Art Design</span>
+          
+          <div class="solution-card" data-solution="correction">
+            <h3 class="heading-4">Problem Correction</h3>
+            <p class="body-small">Specialized correction services for previous treatments including color correction and removal</p>
+            <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20memiliki%20masalah%20dengan%20hasil%20sulam%20sebelumnya%20dan%20ingin%20konsultasi" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Konsultasi Problem Correction</a>
           </div>
-        </div>
-        
-        <div class="gallery-item" data-category="lash">
-          <div class="gallery-placeholder lash-result"></div>
-          <div class="gallery-overlay">
-            <span>Lash Enhancement</span>
-          </div>
-        </div>
-        
-        <div class="gallery-item" data-category="pmu">
-          <div class="gallery-placeholder pmu-result-2"></div>
-          <div class="gallery-overlay">
-            <span>PMU Transformation</span>
+          
+          <div class="solution-card" data-solution="business">
+            <h3 class="heading-4">Beauty Academy</h3>
+            <p class="body-small">Comprehensive business setup mentorship and advanced beauty techniques training</p>
+            <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20membuka%20studio%20kecantikan%20dan%20butuh%20mentoring" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Konsultasi Business Academy</a>
           </div>
         </div>
       </div>
-      
-      <div class="gallery-notice">
-        <p class="body-small text-center" style="color: var(--color-neutral-500); margin-top: var(--space-8);">
-          Gallery images coming soon - be the first to experience our transformative results and share your journey.
-        </p>
+    </div>
+  </section>
+
+  <!-- Results Gallery Section -->
+  <section id="results" class="section section-alt">
+    <div class="container results-editorial">
+      <div>
+        <p class="editorial-kicker">04 <span>/</span> Client work</p>
+        <h2 class="heading-2">Precision you<br><em>can see.</em></h2>
+      </div>
+      <div class="results-note">
+        <p class="body-large">A portfolio of client results is being prepared.</p>
+        <p class="body-small">For now, speak with us about the treatment you have in mind and we’ll be happy to guide you.</p>
+        <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20tentang%20hasil%20treatment" class="text-link" target="_blank" rel="noopener noreferrer">Discuss a treatment <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </section>
@@ -326,9 +483,10 @@
   <section id="testimonials" class="section">
     <div class="container">
       <div class="text-center">
-        <h2 class="heading-2">Client Testimonials</h2>
+        <p class="editorial-kicker">05 <span>/</span> Client Stories</p>
+        <h2 class="heading-2">A space for your story.</h2>
         <p class="body-large" style="margin: var(--space-6) auto var(--space-12); max-width: 600px; color: var(--color-neutral-500);">
-          Hear from our satisfied clients about their transformative experiences at Fidelia Atelier.
+          Client feedback will be shared here when available. No reviews are displayed yet.
         </p>
       </div>
       
@@ -337,12 +495,76 @@
           <div class="testimonial-card">
             <div class="testimonial-content">
               <p class="body-large text-center" style="color: var(--color-neutral-500); font-style: italic;">
-                "Reviews coming soon - be the first to share your experience with Fidelia Atelier's exceptional beauty treatments and professional service."
+                Client stories are being gathered with care. We look forward to sharing real experiences here.
               </p>
             </div>
             <div class="testimonial-cta" style="text-align: center; margin-top: var(--space-8);">
-              <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20berbagi%20pengalaman%20setelah%20treatment" class="btn btn-primary" target="_blank">Share Your Experience</a>
+              <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20berbagi%20pengalaman%20setelah%20treatment" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Share Your Experience</a>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Luxury FAQ Section -->
+  <section class="faq-section section-alt">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="heading-2">Frequently Asked Questions</h2>
+        <p class="body-large" style="margin: var(--space-6) auto var(--space-12); max-width: 600px; color: var(--color-neutral-500);">
+          Get answers to common questions about our premium treatments and academy programs
+        </p>
+      </div>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Apakah treatment PMU / Sulam terasa sakit?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Kami menggunakan teknik dan produk premium yang meminimalkan rasa tidak nyaman. Setiap treatment didahului dengan konsultasi dan persiapan yang tepat untuk memastikan pengalaman yang se-comfortable mungkin.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Berapa lama ketahanan hasil Nail & Lash di Fidelia Atelier?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Dengan produk premium dan teknik profesional kami, hasil nail treatment dapat bertahan 2-3 minggu, sedangkan lash enhancement bertahan 6-8 minggu tergantung perawatan dan kondisi individual.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Bagaimana jika saya pernah gagal sulam di tempat lain? Apakah bisa diperbaiki?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Kami mengkhususkan diri dalam problem correction dan restoration. Tim expert kami memiliki pengalaman dalam menangani berbagai kasus koreksi dengan teknik advanced dan pigmen berkualitas tinggi.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Apakah pemula tanpa latar belakang kecantikan bisa mengikuti Academy?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Tentu saja! Program academy kami dirancang untuk semua level, dari pemula hingga yang ingin upgrade skill. Kami menyediakan mentoring personal dan hands-on practice dengan model hidup.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Apakah wajib melakukan reservasi sebelum datang?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Ya, kami beroperasi dengan sistem appointment-based untuk memastikan setiap klien mendapat perhatian penuh dan waktu treatment yang optimal. Silakan hubungi kami via WhatsApp untuk booking.</p>
           </div>
         </div>
       </div>
@@ -354,12 +576,10 @@
     <div class="container">
       <div class="grid grid-2" style="align-items: center;">
         <div>
-          <div class="hero-badge">
-            <span class="text-gold">Our Story</span>
-          </div>
-          <h2 class="heading-2">About Fidelia Atelier</h2>
+          <p class="editorial-kicker">06 <span>/</span> The founder</p>
+          <h2 class="heading-2">Felicia Fidelia</h2>
           <p class="body-large" style="margin: var(--space-6) 0 var(--space-8); color: var(--color-neutral-500);">
-            Fidelia Atelier represents a unique vision in the beauty industry - combining premium beauty treatments with professional education to create a comprehensive beauty ecosystem.
+            Beauty treatments and professional education, brought together with a personal approach to the craft.
           </p>
           
           <div class="about-highlights">
@@ -375,22 +595,23 @@
           </div>
           
           <div style="margin-top: var(--space-8);">
-            <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20Fidelia%20Atelier" class="btn btn-primary" target="_blank">Learn More</a>
+            <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20dengan%20Felicia%20Fidelia" class="text-link" target="_blank" rel="noopener noreferrer">Connect with Felicia <span aria-hidden="true">↗</span></a>
           </div>
         </div>
         
         <div class="about-visual">
-          <div class="about-image"></div>
+          <div class="about-image">
+            <img alt="Fidelia Atelier logo" data-central-image="branding.logo" loading="lazy" />
+            <span>Beauty Lounge <i>&</i> Academy</span>
+          </div>
         </div>
       </div>
       
       <div class="founder-section" style="margin-top: var(--space-20);">
         <div class="text-center">
-          <h3 class="heading-3">Meet Our Founder</h3>
+          <p class="editorial-kicker">The founder</p>
+          <h3 class="heading-3">Meet the person behind the craft.</h3>
           <div class="founder-card">
-            <div class="founder-image"></div>
-            <h4 class="heading-4">Felicia Fidelia</h4>
-            <p class="text-gold">Founder & Beauty Expert</p>
             <p class="body-small" style="margin: var(--space-4) auto; max-width: 500px; color: var(--color-neutral-500);">
               Passionate about beauty transformation and education, Felicia founded Fidelia Atelier to create a space where excellence in beauty treatments meets professional development, empowering both clients and students to achieve their beauty goals.
             </p>
@@ -436,8 +657,28 @@
               <div>
                 <h4 class="heading-4">Contact</h4>
                 <p class="body-small">WhatsApp: 0819-9627-4816</p>
-                <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20informasi%20lokasi" class="btn btn-whatsapp" style="margin-top: var(--space-3);" target="_blank">Get Directions</a>
+                <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20informasi%20lokasi" class="btn btn-whatsapp" style="margin-top: var(--space-3);" target="_blank" rel="noopener noreferrer">Get Directions</a>
               </div>
+            </div>
+          </div>
+          
+          <!-- Interactive Map -->
+          <div class="location-map" style="margin-top: var(--space-8);">
+            <div class="map-container">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.6804623!3d-6.1932315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f922c7bfa4a9%3A0x8a8e0386d7c69b9e!2sGreen%20Lake%20City!5e0!3m2!1sen!2sid!4v1640995200000!5m2!1sen!2sid"
+                width="100%" 
+                height="300" 
+                style="border:0; border-radius: var(--radius-xl);" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Fidelia Atelier Location - Green Lake City">
+              </iframe>
+            </div>
+            <div class="map-actions" style="text-align: center; margin-top: var(--space-6);">
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Ruko%20Cordoba%20Blok%20C%20No.%2022%2C%20Green%20Lake%20City%2C%20Jakarta%20Barat" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+              <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20butuh%20petunjuk%20arah%20dari%20Tol%20Karang%20Tengah" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Petunjuk Arah dari Tol</a>
             </div>
           </div>
         </div>
@@ -449,7 +690,8 @@
   <section id="contact" class="section section-alt">
     <div class="container">
       <div class="text-center">
-        <h2 class="heading-2">Book Your Beauty Experience</h2>
+        <p class="editorial-kicker">07 <span>/</span> Begin with a conversation</p>
+        <h2 class="heading-2">A thoughtful start<br><em>to something new.</em></h2>
         <p class="body-large" style="margin: var(--space-6) auto var(--space-8); max-width: 600px; color: var(--color-neutral-500);">
           Ready to transform your beauty journey? Contact us through WhatsApp for personalized consultation and booking.
         </p>
@@ -483,16 +725,16 @@
       
       <div class="contact-cta" style="text-align: center; margin-top: var(--space-12);">
         <div class="cta-buttons">
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20beauty%20treatment" class="btn btn-whatsapp btn-large" target="_blank">
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi%20beauty%20treatment" class="btn btn-whatsapp btn-large" target="_blank" rel="noopener noreferrer">
             Book Beauty Treatment
           </a>
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20informasi%20academy%20program" class="btn btn-primary btn-large" target="_blank">
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20informasi%20academy%20program" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">
             Explore Academy
           </a>
         </div>
         
         <p class="body-small" style="margin-top: var(--space-6); color: var(--color-neutral-500);">
-          WhatsApp: <a href="https://wa.me/6281996274816" class="text-gold" target="_blank">0819-9627-4816</a>
+          WhatsApp: <a href="https://wa.me/6281996274816" class="text-gold" target="_blank" rel="noopener noreferrer">0819-9627-4816</a>
         </p>
       </div>
     </div>
@@ -533,22 +775,33 @@
               <li>Green Lake City at Puri</li>
               <li>Ruko Cordoba Blok C No. 22</li>
               <li>Jakarta Barat</li>
-              <li><a href="https://wa.me/6281996274816" class="text-gold" target="_blank">0819-9627-4816</a></li>
+              <li><a href="https://wa.me/6281996274816" class="text-gold" target="_blank" rel="noopener noreferrer">0819-9627-4816</a></li>
             </ul>
           </div>
         </div>
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; 2024 Fidelia Atelier. All rights reserved.</p>
+        <p>&copy; 2026 Fidelia Atelier. All rights reserved.</p>
         <div class="footer-cta">
-          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi" class="btn btn-whatsapp btn-sm" target="_blank">Book Now</a>
+          <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener noreferrer">Book Now</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- Floating WhatsApp Button -->
+  <div class="floating-whatsapp" id="floatingWhatsapp">
+    <a href="https://wa.me/6281996274816?text=Halo%20Fidelia%20Atelier,%20saya%20ingin%20konsultasi" target="_blank" rel="noopener noreferrer" class="whatsapp-float-btn" aria-label="Chat with Consultant">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.787"/>
+      </svg>
+    </a>
+    <div class="whatsapp-tooltip">Chat with Consultant</div>
+  </div>
+
   <!-- Menghubungkan JavaScript -->
+  <script src="js/images.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

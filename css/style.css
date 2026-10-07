@@ -2,6 +2,24 @@
    FIDELIA ATELIER DESIGN SYSTEM
    ============================================== */
 
+
+/* Mengatur header agar logo dan navigasi sejajar */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Mengatur ukuran logo agar tidak terlalu besar */
+.site-header .logo {
+  height: 40px;      /* Sesuaikan tinggi logo sesuai kebutuhan */
+  width: auto;       /* Menjaga rasio aspek tetap proporsional */
+  display: block;
+}
+
 /* CSS Custom Properties (Design Tokens) */
 :root {
   /* Brand Colors - Based on Fidelia Assets */
@@ -67,9 +85,6 @@
   --container-max: 1200px;
   --container-padding: var(--space-6);
 }
-
-/* Typography Import */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* Reset & Base Styles */
 * {
@@ -534,6 +549,25 @@ body {
   );
 }
 
+/* Scroll Animation Classes */
+.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Elements waiting to animate in */
+.card, .hero-content, .section {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.card.animate-in, .hero-content.animate-in, .section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 768px) {
   .nav-links {
@@ -665,66 +699,5 @@ body {
   
   .stat {
     text-align: center;
-  }
-}
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  
-  .mobile-menu-toggle {
-    display: flex;
-  }
-  
-  .heading-1 {
-    font-size: var(--text-4xl);
-  }
-  
-  .heading-2 {
-    font-size: var(--text-3xl);
-  }
-  
-  .heading-3 {
-    font-size: var(--text-2xl);
-  }
-  
-  .container {
-    padding: 0 var(--space-4);
-  }
-  
-  .section {
-    padding: var(--space-16) 0;
-  }
-  
-  .grid-2,
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-  
-  .card {
-    padding: var(--space-6);
-  }
-}
-
-@media (max-width: 480px) {
-  .heading-1 {
-    font-size: var(--text-3xl);
-  }
-  
-  .heading-2 {
-    font-size: var(--text-2xl);
-  }
-  
-  .container {
-    padding: 0 var(--space-3);
-  }
-  
-  .section {
-    padding: var(--space-12) 0;
-  }
-  
-  .btn {
-    padding: var(--space-3) var(--space-6);
-    font-size: var(--text-sm);
   }
 }
